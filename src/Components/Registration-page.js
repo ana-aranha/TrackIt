@@ -4,6 +4,7 @@ import logo from "./Assets/img/logo.svg";
 import { PageStyle, Form } from "./Login-page";
 
 export default function Registration() {
+	const [disabled, setDisabled] = useState(false);
 	const [dataRegistration, setDataRegistration] = useState({
 		email: "",
 		name: "",
@@ -13,9 +14,14 @@ export default function Registration() {
 
 	function SendingRegister(event) {
 		event.preventDefault();
-		isImage(dataRegistration.image)
-			? console.log(dataRegistration)
-			: alert("Insira o URL de uma imagem");
+		if (isImage(dataRegistration.image)) {
+			console.log(dataRegistration);
+			setDisabled(!disabled);
+		} else if (isImage(dataRegistration.image === false)) {
+			alert("Insira o URL de uma imagem");
+		} else {
+			alert("insira os dados corretamente");
+		}
 	}
 
 	return (
@@ -26,6 +32,7 @@ export default function Registration() {
 					type="email"
 					placeholder="email"
 					value={dataRegistration.email}
+					disabled={disabled}
 					onChange={(e) => {
 						const aux = { ...dataRegistration };
 						aux.email = e.target.value;
@@ -36,6 +43,7 @@ export default function Registration() {
 					type="password"
 					placeholder="senha"
 					value={dataRegistration.password}
+					disabled={disabled}
 					onChange={(e) => {
 						const aux = { ...dataRegistration };
 						aux.password = e.target.value;
@@ -46,6 +54,7 @@ export default function Registration() {
 					type="text"
 					placeholder="nome"
 					value={dataRegistration.name}
+					disabled={disabled}
 					onChange={(e) => {
 						const aux = { ...dataRegistration };
 						aux.name = e.target.value;
@@ -56,13 +65,16 @@ export default function Registration() {
 					type="text"
 					placeholder="foto"
 					value={dataRegistration.image}
+					disabled={disabled}
 					onChange={(e) => {
 						const aux = { ...dataRegistration };
 						aux.image = e.target.value;
 						setDataRegistration(aux);
 					}}
 				/>
-				<button type="submit">Cadastrar</button>
+				<button type="submit" disabled={disabled}>
+					Cadastrar
+				</button>
 			</Form>
 			<Link to={"/"}>
 				<p>Já tem uma conta? Faça login!</p>
