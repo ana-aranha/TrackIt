@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ThreeDots } from "react-loader-spinner";
 import logo from "./Assets/img/logo.svg";
 import { PageStyle, Form, DivButton } from "./Login-page";
+import { Register } from "./Services/Trackit";
 
 export default function Registration() {
 	const [disabled, setDisabled] = useState(false);
@@ -12,17 +13,22 @@ export default function Registration() {
 		image: "",
 		password: "",
 	});
+	const navigate = useNavigate();
 
 	function SendingRegister(event) {
 		event.preventDefault();
-		if (isImage(dataRegistration.image)) {
-			console.log(dataRegistration);
-			setDisabled(!disabled);
-		} else if (isImage(dataRegistration.image === false)) {
-			alert("Insira o URL de uma imagem");
-		} else {
-			alert("insira os dados corretamente");
-		}
+		setDisabled(true);
+
+		Register(dataRegistration)
+			.then(navigate("/"))
+			.catch(() => {
+				if (isImage(dataRegistration.image === false)) {
+					alert("Insira o URL de uma imagem");
+				} else {
+					alert("insira os dados corretamente");
+				}
+				setDisabled(false);
+			});
 	}
 
 	return (
