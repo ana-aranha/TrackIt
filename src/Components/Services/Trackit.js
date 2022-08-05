@@ -2,7 +2,7 @@ import axios from "axios";
 
 const link = "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/";
 
-function Loggin(obj) {
+function SendingLogin(obj) {
 	const promise = axios.post(`${link}auth/login`, obj);
 	return promise;
 }
@@ -12,4 +12,4 @@ function Register(obj) {
 	return promise;
 }
 
-export { Loggin, Register };
+export { SendingLogin, Register };

@@ -1,19 +1,41 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useContext, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import logo from "./Assets/img/logo.svg";
+import UserContext from "./contexts/UserContext";
+import { ThreeDots } from "react-loader-spinner";
+import { SendingLogin } from "./Services/Trackit";
 
 export default function Login() {
-	const [dataLogin, setDataLogin] = useState({ email: "", password: "" });
-	/* 	console.log(Object.getOwnPropertyNames(dataLogin)); */
+	const { dataLogin, setDataLogin, setDataToken } = useContext(UserContext);
+	const [disabled, setDisabled] = useState(false);
+	const navigate = useNavigate();
+
+	function GettinLogin(event) {
+		event.preventDefault();
+		setDisabled(true);
+
+		SendingLogin(dataLogin)
+			.then((resp) => {
+				setDataLogin(resp.data);
+				setDataToken(resp.data.token);
+				localStorage.setItem("LocalToken", resp.data.token);
+				navigate("/hoje");
+			})
+			.catch(() => {
+				alert("usuário inválido");
+				setDisabled(false);
+			});
+	}
 
 	return (
 		<PageStyle>
 			<img src={logo} alt="logo" />
-			<Form onSubmit={console.log(dataLogin)}>
+			<Form onSubmit={GettinLogin}>
 				<input
 					type="email"
 					placeholder="email"
+					disabled={disabled}
 					value={dataLogin.email}
 					onChange={(e) => {
 						const aux = { ...dataLogin };
@@ -24,6 +46,7 @@ export default function Login() {
 				<input
 					type="password"
 					placeholder="senha"
+					disabled={disabled}
 					value={dataLogin.password}
 					onChange={(e) => {
 						const aux = { ...dataLogin };
@@ -31,7 +54,21 @@ export default function Login() {
 						setDataLogin(aux);
 					}}
 				/>
-				<button type="submit">Entrar</button>
+				<DivButton type="submit" ColorButton={disabled}>
+					{disabled ? (
+						<ThreeDots
+							height="80"
+							width="80"
+							radius="9"
+							color="#ffffff"
+							ariaLabel="three-dots-loading"
+							wrapperStyle={{}}
+							wrapperClassName=""
+						/>
+					) : (
+						`Entrar`
+					)}
+				</DivButton>
 			</Form>
 			<Link to={"/cadastro"}>
 				<p>Não tem uma conta? Cadastre-se!</p>
@@ -57,16 +94,20 @@ export const PageStyle = styled.div`
 		text-decoration: underline;
 		margin-top: 25px;
 	}
+`;
 
-	button {
-		border-style: none;
-		color: #ffffff;
-		background-color: #52b6ff;
-		width: 80%;
-		height: 50px;
-		border-radius: 5px;
-		font-size: 20px;
-	}
+export const DivButton = styled.button`
+	border-style: none;
+	color: #ffffff;
+	background-color: ${(props) =>
+		props.ColorButton ? `rgba(82, 182, 253, 0.7)` : `rgba(82, 182, 253, 1)`};
+	width: 80%;
+	height: 50px;
+	border-radius: 5px;
+	font-size: 20px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 `;
 
 export const Form = styled.form`

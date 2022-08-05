@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { ThreeDots } from "react-loader-spinner";
 import logo from "./Assets/img/logo.svg";
-import { PageStyle, Form } from "./Login-page";
+import { PageStyle, Form, DivButton } from "./Login-page";
 
 export default function Registration() {
 	const [disabled, setDisabled] = useState(false);
@@ -72,9 +73,21 @@ export default function Registration() {
 						setDataRegistration(aux);
 					}}
 				/>
-				<button type="submit" disabled={disabled}>
-					Cadastrar
-				</button>
+				<DivButton type="submit" disabled={disabled}>
+					{disabled ? (
+						<ThreeDots
+							height="80"
+							width="80"
+							radius="9"
+							color="#ffffff"
+							ariaLabel="three-dots-loading"
+							wrapperStyle={{}}
+							wrapperClassName=""
+						/>
+					) : (
+						`Cadastrar`
+					)}
+				</DivButton>
 			</Form>
 			<Link to={"/"}>
 				<p>Já tem uma conta? Faça login!</p>
@@ -83,7 +96,7 @@ export default function Registration() {
 	);
 }
 
-function isImage(url) {
+export function isImage(url) {
 	return (
 		/\.(jpg|jpeg|png|webp|avif|gif|svg)$/.test(url) && url.startsWith("http")
 	);
