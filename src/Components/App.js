@@ -8,7 +8,7 @@ import Today from "./Today-page";
 
 export default function App() {
 	const [dataLogin, setDataLogin] = useState({ email: "", password: "" });
-	const [dataToken, setDataToken] = useState({ token: "", setToken: "" });
+	const [dataToken, setDataToken] = useState("");
 
 	return (
 		<>

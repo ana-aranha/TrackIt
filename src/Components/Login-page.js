@@ -20,6 +20,7 @@ export default function Login() {
 				setDataLogin(resp.data);
 				setDataToken(resp.data.token);
 				localStorage.setItem("LocalToken", resp.data.token);
+				localStorage.setItem("LocalData", JSON.stringify(resp.data));
 				navigate("/hoje");
 			})
 			.catch(() => {
