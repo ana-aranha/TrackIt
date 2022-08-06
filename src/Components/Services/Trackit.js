@@ -12,4 +12,14 @@ function Register(obj) {
 	return promise;
 }
 
-export { SendingLogin, Register };
+function todaysHabits(obj) {
+	const promise = axios.get(`${link}habits/today`, obj);
+	return promise;
+}
+
+function GetHabits(obj) {
+	const promise = axios.get(`${link}habits`, obj);
+	return promise;
+}
+
+export { SendingLogin, Register, todaysHabits, GetHabits };

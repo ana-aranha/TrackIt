@@ -29,6 +29,7 @@ footer, header, hgroup, menu, nav, section {
 body {
 	line-height: 1;
   position:relative;
+	font-family: 'Lexend Deca', sans-serif;
 }
 ol, ul {
 	list-style: none;
@@ -47,6 +48,10 @@ table {
 }
 strong {
 	font-weight: bold;
+}
+h1{font-family: 'Playball', cursive;
+color: #ffffff;
+font-size: 40px;
 }
 
 *{box-sizing: border-box;}
