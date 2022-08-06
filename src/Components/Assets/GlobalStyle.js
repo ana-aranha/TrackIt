@@ -30,6 +30,7 @@ body {
 	line-height: 1;
   position:relative;
 	font-family: 'Lexend Deca', sans-serif;
+	background-color: #F2F2F2;
 }
 ol, ul {
 	list-style: none;

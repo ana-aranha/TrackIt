@@ -10,11 +10,19 @@ import HabitsPage from "./Habits-page";
 export default function App() {
 	const [dataLogin, setDataLogin] = useState({ email: "", password: "" });
 	const [dataToken, setDataToken] = useState("");
+	const [conf, setConf] = useState({});
 
 	return (
 		<>
 			<UserContext.Provider
-				value={{ dataLogin, setDataLogin, dataToken, setDataToken }}
+				value={{
+					dataLogin,
+					setDataLogin,
+					dataToken,
+					setDataToken,
+					conf,
+					setConf,
+				}}
 			>
 				<BrowserRouter>
 					<GlobalStyle />

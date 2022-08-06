@@ -23,7 +23,7 @@ function useLocalToken() {
 	const [newToken, setNewToken] = useState({});
 
 	useEffect(() => {
-		const aux = JSON.parse(localStorage.getItem("LocalData"));
+		const aux = localStorage.getItem("LocalToken");
 
 		if (!aux) {
 			navigate("/");
@@ -35,4 +35,21 @@ function useLocalToken() {
 	return newToken;
 }
 
-export { useLocalData, useLocalToken };
+function useLocalConf() {
+	const navigate = useNavigate();
+	const [newConf, setNewConf] = useState({});
+
+	useEffect(() => {
+		const aux = JSON.parse(localStorage.getItem("conf"));
+
+		if (!aux) {
+			navigate("/");
+		}
+		setNewConf(aux);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
+
+	return newConf;
+}
+
+export { useLocalData, useLocalToken, useLocalConf };

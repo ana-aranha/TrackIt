@@ -5,12 +5,10 @@ import styled from "styled-components";
 export default function Top() {
 	const { dataLogin } = useContext(UserContext);
 
-	console.log(dataLogin.image);
 	return (
 		<TopPage>
 			<h1>TrackIt</h1>
 			<img src={dataLogin.image} alt="profileImage" />{" "}
-			{/* working with localStorage */}
 		</TopPage>
 	);
 }

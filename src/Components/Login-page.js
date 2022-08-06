@@ -7,7 +7,8 @@ import { ThreeDots } from "react-loader-spinner";
 import { SendingLogin } from "./Services/Trackit";
 
 export default function Login() {
-	const { dataLogin, setDataLogin, setDataToken } = useContext(UserContext);
+	const { dataLogin, setDataLogin, setDataToken, setConf } =
+		useContext(UserContext);
 	const [disabled, setDisabled] = useState(false);
 	const navigate = useNavigate();
 
@@ -19,8 +20,17 @@ export default function Login() {
 			.then((resp) => {
 				setDataLogin(resp.data);
 				setDataToken(resp.data.token);
-				localStorage.setItem("LocalToken", resp.data.token);
+				setConf({
+					headers: { Authorization: `Bearer ${resp.data.token}` },
+				});
+				/* localStorage.setItem("LocalToken", resp.data.token);
 				localStorage.setItem("LocalData", JSON.stringify(resp.data));
+				localStorage.setItem(
+					"conf",
+					JSON.stringify({
+						headers: { Authorization: `Bearer ${resp.data.token}` },
+					}),
+				); */
 				navigate("/hoje");
 			})
 			.catch(() => {
@@ -84,6 +94,7 @@ export const PageStyle = styled.div`
 	align-items: center;
 	justify-content: center;
 	height: 100vh;
+	background-color: #ffffff;
 
 	img {
 		height: 27%;
