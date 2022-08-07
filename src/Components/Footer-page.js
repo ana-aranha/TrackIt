@@ -10,7 +10,9 @@ export default function Footer() {
 			<Link to={"/hoje"}>
 				<p>Hoje</p>
 			</Link>
-			<p>Histórico</p>
+			<Link to={"/historico"}>
+				<p>Histórico</p>
+			</Link>
 		</FooterPage>
 	);
 }

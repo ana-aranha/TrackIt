@@ -6,6 +6,7 @@ import Registration from "./Registration-page";
 import UserContext from "./contexts/UserContext";
 import Today from "./Today-page";
 import HabitsPage from "./Habits-page";
+import History from "./History";
 
 export default function App() {
 	const [dataLogin, setDataLogin] = useState({ email: "", password: "" });
@@ -31,6 +32,7 @@ export default function App() {
 						<Route path="/cadastro" element={<Registration />} />
 						<Route path="/hoje" element={<Today />} />
 						<Route path="/habitos" element={<HabitsPage />} />
+						<Route path="/historico" element={<History />} />
 					</Routes>
 				</BrowserRouter>
 			</UserContext.Provider>

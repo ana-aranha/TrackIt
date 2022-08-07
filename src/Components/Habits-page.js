@@ -46,14 +46,14 @@ export default function HabitsPage() {
 						</h3>
 					) : (
 						habitsArray.map((el, i) => (
-							<HabitItem key={i}>
+							<HabitItem key={`habit key ${i}`}>
 								<div>
 									<p>{el.name}</p>
 									<div>
 										{weekdays.map((e, index) => {
 											return (
-												<Week background={el.days.includes(index)}>
-													<p key={index}>{e}</p>
+												<Week background={el.days.includes(index)} key={index}>
+													<p>{e}</p>
 												</Week>
 											);
 										})}
@@ -84,7 +84,7 @@ export default function HabitsPage() {
 	);
 }
 
-const ButtonConfirm = styled.div`
+export const ButtonConfirm = styled.div`
 	background-color: #52b6ff;
 	display: flex;
 	align-items: center;
@@ -98,18 +98,31 @@ const ButtonConfirm = styled.div`
 	}
 `;
 
-const HabitItem = styled.div`
+export const HabitItem = styled.div`
 	padding: 15px;
 	background-color: #ffffff;
 	border-radius: 5px;
 	margin-top: 20px;
 	color: #666666;
-	font-size: 18px;
 	font-weight: 400;
 
 	> div {
 		display: flex;
 		flex-direction: column;
+
+		p {
+			font-size: 15px;
+		}
+
+		h3 {
+			font-size: 18px;
+			margin-top: 0;
+			margin-bottom: 10px;
+		}
+
+		span {
+			color: #8fc549;
+		}
 	}
 
 	div:last-child {

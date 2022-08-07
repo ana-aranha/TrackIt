@@ -23,14 +23,14 @@ export default function Login() {
 				setConf({
 					headers: { Authorization: `Bearer ${resp.data.token}` },
 				});
-				/* localStorage.setItem("LocalToken", resp.data.token);
+				localStorage.setItem("LocalToken", resp.data.token);
 				localStorage.setItem("LocalData", JSON.stringify(resp.data));
 				localStorage.setItem(
 					"conf",
 					JSON.stringify({
 						headers: { Authorization: `Bearer ${resp.data.token}` },
 					}),
-				); */
+				);
 				navigate("/hoje");
 			})
 			.catch(() => {
