@@ -12,6 +12,7 @@ export default function App() {
 	const [dataLogin, setDataLogin] = useState({ email: "", password: "" });
 	const [dataToken, setDataToken] = useState("");
 	const [conf, setConf] = useState({});
+	const [todayHabitsArray, setTodayHabitsArray] = useState("");
 
 	return (
 		<>
@@ -23,6 +24,8 @@ export default function App() {
 					setDataToken,
 					conf,
 					setConf,
+					todayHabitsArray,
+					setTodayHabitsArray,
 				}}
 			>
 				<BrowserRouter>

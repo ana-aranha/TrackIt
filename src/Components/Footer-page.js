@@ -1,14 +1,50 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import UserContext from "./contexts/UserContext";
+import { useContext, useEffect, useState } from "react";
+import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
+import "react-circular-progressbar/dist/styles.css";
 
 export default function Footer() {
+	const { todayHabitsArray } = useContext(UserContext);
+	const [doneHabit, setDoneHabit] = useState(0);
+
+	let aux = 0;
+	for (let index in todayHabitsArray) {
+		if (todayHabitsArray[index].done) {
+			aux += 1;
+		}
+	}
+
+	useEffect(() => {
+		if (todayHabitsArray.length !== 0) {
+			setDoneHabit(aux);
+		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
+
+	const percentage = Math.round((doneHabit / todayHabitsArray.length) * 100);
+
 	return (
 		<FooterPage>
 			<Link to={"/habitos"}>
 				<p>hábitos</p>
 			</Link>
 			<Link to={"/hoje"}>
-				<p>Hoje</p>
+				<div style={{ width: 100, height: 100 }}>
+					<CircularProgressbar
+						value={percentage}
+						text={"Hoje"}
+						background
+						backgroundPadding={6}
+						styles={buildStyles({
+							backgroundColor: "#52b6ff",
+							textColor: "#fff",
+							pathColor: "#fff",
+							trailColor: "transparent",
+						})}
+					/>
+				</div>
 			</Link>
 			<Link to={"/historico"}>
 				<p>Histórico</p>
@@ -26,13 +62,14 @@ const FooterPage = styled.div`
 	bottom: 0;
 	display: flex;
 	justify-content: space-between;
-	align-items: center;
-	padding: 0 10%;
+	align-items: flex-end;
+	padding: 0 10% 2% 10%;
 
 	p {
 		font-weight: 400;
 		font-size: 23px;
 		color: #52b6ff;
+		margin-bottom: 20px;
 	}
 
 	a:link {

@@ -1,31 +1,23 @@
 import UserContext from "./contexts/UserContext";
 import { useNavigate } from "react-router-dom";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import Top from "./Top-page";
 import { todaysHabits } from "./Services/Trackit";
 import * as dayjs from "dayjs";
 import styled from "styled-components";
 import Footer from "./Footer-page";
 import { HabitItem } from "./Habits-page";
+import "dayjs/locale/pt";
 
 export default function Today() {
-	const { conf, dataLogin } = useContext(UserContext);
-	const daysPt = [
-		"Domingo",
-		"Segunda",
-		"Terça",
-		"Quarta",
-		"Quinta",
-		"Quinta",
-		"Sábado",
-	];
+	const { conf, dataLogin, todayHabitsArray, setTodayHabitsArray } =
+		useContext(UserContext);
 
 	const customParseFormat = require("dayjs/plugin/customParseFormat");
 	dayjs.extend(customParseFormat);
-	const now = `${daysPt[dayjs().day()]}, ${dayjs().format("DD/MM")}`;
 
 	const navigate = useNavigate();
-	const [todayHabitsArray, setTodayHabitsArray] = useState("");
+	const today = dayjs().locale("pt").format("dddd, DD/MM");
 
 	useEffect(() => {
 		if (dataLogin.email === "") {
@@ -44,7 +36,7 @@ export default function Today() {
 		<>
 			<Top />
 			<HabitsStyle>
-				<h2>{now}</h2>
+				<h2>{today.charAt(0).toUpperCase() + today.slice(1)}</h2>
 				<h3>Nenhum hábito concluído ainda </h3>
 				{todayHabitsArray.length === 0 ? (
 					<h3>
