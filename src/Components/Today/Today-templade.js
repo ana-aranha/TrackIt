@@ -109,13 +109,13 @@ function List({ el, CheckFunction }) {
 	if (el.currentSequence === el.highestSequence) {
 		spanColor = "true";
 	}
-
 	return (
 		<HabitItem>
 			<div>
 				<h3>{el.name}</h3>
 				<p>
-					Sequência atual: <span>{el.currentSequence} dias</span>
+					Sequência atual:{" "}
+					<SpanItem color={"true"}>{el.currentSequence} dias</SpanItem>
 				</p>
 				<p>
 					Seu record:{" "}

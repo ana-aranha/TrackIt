@@ -41,7 +41,7 @@ export default function HabitsTemplade() {
 						.catch((resp) => console.log(conf, resp));
 				})
 				.catch((resp) => {
-					console.log("deu ruim", resp);
+					console.log(resp);
 				});
 		}
 	}
@@ -55,7 +55,7 @@ export default function HabitsTemplade() {
 						<ButtonConfirm>
 							<p
 								onClick={() => {
-									setDisplayViewOption(!displayViewOption);
+									setDisplayViewOption(true);
 								}}
 							>
 								+

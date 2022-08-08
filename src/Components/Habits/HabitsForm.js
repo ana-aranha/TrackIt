@@ -22,22 +22,21 @@ export default function HabitsForm({
 	const { conf, setTodayHabitsArray } = useContext(UserContext);
 	const [habitNew, setHabitNew] = useState({ name: "", days: [] });
 
-	function CancelNewHabit() {
-		setDisplayViewOption(!displayViewOption);
+	function CancelNewHabit(event) {
+		event.preventDefault();
+		setDisplayViewOption(false);
 	}
 
 	function GettinNewHabit(event) {
 		event.preventDefault();
-		console.log(habitNew);
 		setDisabled(true);
 
 		if (habitNew.days.length > 0) {
 			PostHabits(habitNew, conf)
 				.then((resp) => {
-					console.log(resp.data);
 					setDisabled(false);
 					setHabitNew({ name: "", days: [] });
-					setDisplayViewOption(!displayViewOption);
+					setDisplayViewOption(false);
 					GetHabits(conf)
 						.then((resp) => {
 							setHabitsArray([...resp.data]);
@@ -60,7 +59,7 @@ export default function HabitsForm({
 	return (
 		<HabitItem style={{ display: displayViewOption ? "block" : "none" }}>
 			<div>
-				<FormHabits onSubmit={GettinNewHabit}>
+				<FormHabits>
 					<input
 						type="text"
 						placeholder="nome do hábito"
@@ -77,9 +76,9 @@ export default function HabitsForm({
 							Cancelar
 						</DivButtonCancel>
 						<DivButtonHabits
-							type="submit"
 							ColorButton={disabled}
 							disabled={disabled}
+							onClick={GettinNewHabit}
 						>
 							{disabled ? (
 								<ThreeDots

@@ -68,9 +68,9 @@ export const HabitItem = styled.div`
 			margin-bottom: 10px;
 		}
 
-		span {
+		/* 		span {
 			color: #8fc549;
-		}
+		} */
 	}
 
 	div:last-child {
