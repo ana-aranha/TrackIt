@@ -13,6 +13,7 @@ export default function App() {
 	const [dataToken, setDataToken] = useState("");
 	const [conf, setConf] = useState({});
 	const [percentage, SetPercentage] = useState(0);
+	const [todayHabitsArray, setTodayHabitsArray] = useState("");
 
 	return (
 		<>
@@ -26,6 +27,8 @@ export default function App() {
 					setConf,
 					percentage,
 					SetPercentage,
+					todayHabitsArray,
+					setTodayHabitsArray,
 				}}
 			>
 				<BrowserRouter>

@@ -32,11 +32,35 @@ function DeleteHabits(id, obj) {
 	return promise;
 }
 
+function CheckHabits(id, obj) {
+	const promise = axios.post(`${link}habits/${id}/check`, {}, obj);
+	return promise;
+}
+
+function UnCheckHabits(id, obj) {
+	const promise = axios.post(`${link}habits/${id}/uncheck`, {}, obj);
+	return promise;
+}
+
+function counterfunction(arr) {
+	let counter = 0;
+	for (let i in arr) {
+		if (arr[i].done) {
+			counter += 1;
+		}
+	}
+
+	return counter;
+}
+
 export {
+	CheckHabits,
+	UnCheckHabits,
 	SendingLogin,
 	Register,
 	todaysHabits,
 	GetHabits,
 	PostHabits,
 	DeleteHabits,
+	counterfunction,
 };

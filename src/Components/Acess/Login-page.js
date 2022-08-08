@@ -65,7 +65,7 @@ export default function Login() {
 						setDataLogin(aux);
 					}}
 				/>
-				<DivButton type="submit" ColorButton={disabled}>
+				<DivButton type="submit" ColorButton={disabled} disabled={disabled}>
 					{disabled ? (
 						<ThreeDots
 							height="80"

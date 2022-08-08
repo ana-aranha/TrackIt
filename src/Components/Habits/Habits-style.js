@@ -8,7 +8,6 @@ export const HabitsStyle = styled.div`
 		font-size: 23px;
 		color: #126ba5;
 	}
-
 	h3 {
 		margin-top: 30px;
 		color: #666666;
@@ -21,6 +20,16 @@ export const HabitsStyle = styled.div`
 		justify-content: space-between;
 		align-items: flex-start;
 	}
+
+	h4 {
+		margin-top: 10px;
+		font-size: 18px;
+		font-weight: 400;
+	}
+`;
+
+export const Message = styled.h4`
+	color: ${(props) => (props.color === "true" ? "#8FC549" : `#bababa`)};
 `;
 
 export const ButtonConfirm = styled.div`
@@ -38,7 +47,6 @@ export const ButtonConfirm = styled.div`
 `;
 
 export const HabitItem = styled.div`
-	/* 	visibility: ${(props) => (props.Displayview ? "initial" : "none")}; */
 	padding: 15px;
 	background-color: #ffffff;
 	border-radius: 5px;
@@ -55,7 +63,7 @@ export const HabitItem = styled.div`
 		}
 
 		h3 {
-			font-size: 18px;
+			font-size: 23px;
 			margin-top: 0;
 			margin-bottom: 10px;
 		}
@@ -68,6 +76,10 @@ export const HabitItem = styled.div`
 	div:last-child {
 		display: flex;
 	}
+`;
+
+export const SpanItem = styled.span`
+	color: ${(props) => (props.color === "true" ? "#8FC549" : `#666666`)};
 `;
 
 export const Week = styled.div`
@@ -100,7 +112,7 @@ export const DivButtonHabits = styled.button`
 	justify-content: center;
 `;
 
-export const DivButtonCancel = styled.div`
+export const DivButtonCancel = styled.button`
 	border-style: none;
 	background-color: #ffffff;
 	width: 100px;

@@ -57,7 +57,7 @@ export default function HabitsForm({
 	return (
 		<HabitItem style={{ display: displayViewOption ? "block" : "none" }}>
 			<div>
-				<FormHabits>
+				<FormHabits onSubmit={GettinNewHabit}>
 					<input
 						type="text"
 						placeholder="nome do hábito"
@@ -70,12 +70,13 @@ export default function HabitsForm({
 						}}
 					/>
 					<div>
-						<DivButtonCancel onClick={CancelNewHabit}>Cancelar</DivButtonCancel>
+						<DivButtonCancel onClick={CancelNewHabit} disabled={disabled}>
+							Cancelar
+						</DivButtonCancel>
 						<DivButtonHabits
 							type="submit"
 							ColorButton={disabled}
 							disabled={disabled}
-							onClick={GettinNewHabit}
 						>
 							{disabled ? (
 								<ThreeDots
