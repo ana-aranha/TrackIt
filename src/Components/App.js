@@ -10,7 +10,6 @@ import TodayPage from "./Today/Today-page";
 
 export default function App() {
 	const [dataLogin, setDataLogin] = useState({ email: "", password: "" });
-	const [dataToken, setDataToken] = useState("");
 	const [conf, setConf] = useState({});
 	const [percentage, SetPercentage] = useState(0);
 	const [todayHabitsArray, setTodayHabitsArray] = useState("");
@@ -21,8 +20,6 @@ export default function App() {
 				value={{
 					dataLogin,
 					setDataLogin,
-					dataToken,
-					setDataToken,
 					conf,
 					setConf,
 					percentage,

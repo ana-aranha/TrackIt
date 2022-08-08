@@ -7,7 +7,7 @@ import {
 } from "./Habits-style";
 import { ThreeDots } from "react-loader-spinner";
 import { useState } from "react";
-import { PostHabits } from "../Services/Trackit";
+import { PostHabits, todaysHabits } from "../Services/Trackit";
 import UserContext from "../contexts/UserContext";
 import { useContext } from "react";
 import { GetHabits } from "../Services/Trackit";
@@ -19,7 +19,7 @@ export default function HabitsForm({
 	setHabitsArray,
 }) {
 	const [disabled, setDisabled] = useState(false);
-	const { conf } = useContext(UserContext);
+	const { conf, setTodayHabitsArray } = useContext(UserContext);
 	const [habitNew, setHabitNew] = useState({ name: "", days: [] });
 
 	function CancelNewHabit() {
@@ -43,9 +43,12 @@ export default function HabitsForm({
 							setHabitsArray([...resp.data]);
 						})
 						.catch((resp) => console.log(resp));
+					todaysHabits(conf)
+						.then((resp) => setTodayHabitsArray(resp.data))
+						.catch((resp) => console.log(conf, resp));
 				})
 				.catch((resp) => {
-					console.log(resp);
+					alert("Preencha os campos corretamente");
 					setDisabled(false);
 				});
 		} else {

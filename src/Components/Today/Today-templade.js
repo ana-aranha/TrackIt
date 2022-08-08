@@ -18,14 +18,8 @@ import getDate from "../Services/Date";
 import { ThreeDots } from "react-loader-spinner";
 
 export default function Today() {
-	const {
-		conf,
-		dataLogin,
-		SetPercentage,
-		todayHabitsArray,
-		setTodayHabitsArray,
-		percentage,
-	} = useContext(UserContext);
+	const { conf, dataLogin, todayHabitsArray, setTodayHabitsArray, percentage } =
+		useContext(UserContext);
 
 	const navigate = useNavigate();
 	useEffect(() => {
@@ -40,12 +34,6 @@ export default function Today() {
 	}, []);
 
 	const doneHabit = counterfunction(todayHabitsArray);
-
-	if (doneHabit !== 0) {
-		SetPercentage(Math.round((doneHabit / todayHabitsArray.length) * 100));
-	} else if (doneHabit === 0) {
-		SetPercentage(0);
-	}
 
 	function CheckFunction(id, done) {
 		if (done === false) {

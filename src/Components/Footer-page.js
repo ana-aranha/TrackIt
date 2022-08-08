@@ -4,9 +4,20 @@ import UserContext from "./contexts/UserContext";
 import { useContext } from "react";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
+import { counterfunction } from "./Services/Trackit";
 
 export default function Footer() {
-	const { percentage } = useContext(UserContext);
+	const { percentage, SetPercentage, todayHabitsArray } =
+		useContext(UserContext);
+
+	const doneHabit = counterfunction(todayHabitsArray);
+
+	if (doneHabit !== 0) {
+		SetPercentage(Math.round((doneHabit / todayHabitsArray.length) * 100));
+	} else if (doneHabit === 0) {
+		SetPercentage(0);
+	}
+
 	return (
 		<FooterPage>
 			<Link to={"/habitos"}>

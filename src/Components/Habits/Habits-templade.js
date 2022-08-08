@@ -2,12 +2,12 @@ import UserContext from "../contexts/UserContext";
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ThreeDots } from "react-loader-spinner";
-import { GetHabits, DeleteHabits } from "../Services/Trackit";
+import { GetHabits, DeleteHabits, todaysHabits } from "../Services/Trackit";
 import { ButtonConfirm, HabitItem, Week, HabitsStyle } from "./Habits-style";
 import HabitsForm from "./HabitsForm";
 
 export default function HabitsTemplade() {
-	const { conf, dataLogin } = useContext(UserContext);
+	const { conf, dataLogin, setTodayHabitsArray } = useContext(UserContext);
 	const navigate = useNavigate();
 	const [habitsArray, setHabitsArray] = useState("");
 	const weekdays = ["D", "S", "T", "Q", "Q", "S", "S"];
@@ -36,6 +36,9 @@ export default function HabitsTemplade() {
 							setHabitsArray(resp.data);
 						})
 						.catch((resp) => console.log(resp));
+					todaysHabits(conf)
+						.then((resp) => setTodayHabitsArray(resp.data))
+						.catch((resp) => console.log(conf, resp));
 				})
 				.catch((resp) => {
 					console.log("deu ruim", resp);

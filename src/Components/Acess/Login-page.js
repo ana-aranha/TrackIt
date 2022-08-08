@@ -7,8 +7,7 @@ import { SendingLogin } from "../Services/Trackit";
 import { PageStyle, DivButton, Form } from "./Acess-style";
 
 export default function Login() {
-	const { dataLogin, setDataLogin, setDataToken, setConf } =
-		useContext(UserContext);
+	const { dataLogin, setDataLogin, setConf } = useContext(UserContext);
 	const [disabled, setDisabled] = useState(false);
 	const navigate = useNavigate();
 
@@ -19,7 +18,6 @@ export default function Login() {
 		SendingLogin(dataLogin)
 			.then((resp) => {
 				setDataLogin(resp.data);
-				setDataToken(resp.data.token);
 				setConf({
 					headers: { Authorization: `Bearer ${resp.data.token}` },
 				});
