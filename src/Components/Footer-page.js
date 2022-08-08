@@ -1,30 +1,12 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import UserContext from "./contexts/UserContext";
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 
 export default function Footer() {
-	const { todayHabitsArray } = useContext(UserContext);
-	const [doneHabit, setDoneHabit] = useState(0);
-
-	let aux = 0;
-	for (let index in todayHabitsArray) {
-		if (todayHabitsArray[index].done) {
-			aux += 1;
-		}
-	}
-
-	useEffect(() => {
-		if (todayHabitsArray.length !== 0) {
-			setDoneHabit(aux);
-		}
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
-
-	const percentage = Math.round((doneHabit / todayHabitsArray.length) * 100);
-
+	const { percentage } = useContext(UserContext);
 	return (
 		<FooterPage>
 			<Link to={"/habitos"}>

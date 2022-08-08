@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ThreeDots } from "react-loader-spinner";
-import logo from "./Assets/img/logo.svg";
-import { PageStyle, Form, DivButton } from "./Login-page";
-import { Register } from "./Services/Trackit";
+import logo from "../Assets/img/logo.svg";
+import { PageStyle, DivButton, Form } from "./Acess-style";
+import { Register } from "../Services/Trackit";
 
 export default function Registration() {
 	const [disabled, setDisabled] = useState(false);

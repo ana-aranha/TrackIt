@@ -1,18 +1,18 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { useState } from "react";
 import GlobalStyle from "./Assets/GlobalStyle";
-import Login from "./Login-page";
-import Registration from "./Registration-page";
+import Login from "./Acess/Login-page";
+import Registration from "./Acess/Registration-page";
 import UserContext from "./contexts/UserContext";
-import Today from "./Today-page";
-import HabitsPage from "./Habits-page";
+import HabitsPage from "./Habits/Habits-page";
 import History from "./History";
+import TodayPage from "./Today/Today-page";
 
 export default function App() {
 	const [dataLogin, setDataLogin] = useState({ email: "", password: "" });
 	const [dataToken, setDataToken] = useState("");
 	const [conf, setConf] = useState({});
-	const [todayHabitsArray, setTodayHabitsArray] = useState("");
+	const [percentage, SetPercentage] = useState(0);
 
 	return (
 		<>
@@ -24,8 +24,8 @@ export default function App() {
 					setDataToken,
 					conf,
 					setConf,
-					todayHabitsArray,
-					setTodayHabitsArray,
+					percentage,
+					SetPercentage,
 				}}
 			>
 				<BrowserRouter>
@@ -33,7 +33,7 @@ export default function App() {
 					<Routes>
 						<Route path="/" element={<Login />} />
 						<Route path="/cadastro" element={<Registration />} />
-						<Route path="/hoje" element={<Today />} />
+						<Route path="/hoje" element={<TodayPage />} />
 						<Route path="/habitos" element={<HabitsPage />} />
 						<Route path="/historico" element={<History />} />
 					</Routes>

@@ -22,4 +22,21 @@ function GetHabits(obj) {
 	return promise;
 }
 
-export { SendingLogin, Register, todaysHabits, GetHabits };
+function PostHabits(body, obj) {
+	const promise = axios.post(`${link}habits`, body, obj);
+	return promise;
+}
+
+function DeleteHabits(id, obj) {
+	const promise = axios.delete(`${link}habits/${id}`, obj);
+	return promise;
+}
+
+export {
+	SendingLogin,
+	Register,
+	todaysHabits,
+	GetHabits,
+	PostHabits,
+	DeleteHabits,
+};

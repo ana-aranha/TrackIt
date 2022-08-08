@@ -1,6 +1,6 @@
 import Top from "./Top-page";
 import Footer from "./Footer-page";
-import { HabitsStyle } from "./Today-page";
+import { HabitsStyle } from "./Habits/Habits-style";
 
 export default function History() {
 	return (
